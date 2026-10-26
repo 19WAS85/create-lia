@@ -82,7 +82,7 @@ async function collectTemplates(
 function buildIndex(files: FileTree, method: MethodPack): string {
   const lines = ["## Index", "", "- [AGENTS.md](AGENTS.md)"];
   if (method.tasksFile !== null) {
-    lines.push(`- [TASKS.md](TASKS.md)`);
+    lines.push("- [TASKS.md](TASKS.md)");
   }
   const seen = new Set<string>();
   for (const key of [...files.keys()].sort()) {

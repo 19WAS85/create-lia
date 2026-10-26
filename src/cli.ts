@@ -38,6 +38,13 @@ function cancel(): never {
   process.exit(0);
 }
 
+function unwrapAnswer(answer: string | symbol): string {
+  if (typeof answer !== "string" || p.isCancel(answer)) {
+    cancel();
+  }
+  return answer;
+}
+
 function toKebabCase(value: string): string {
   const kebab = value
     .trim()
@@ -63,47 +70,53 @@ async function promptText(
   message: string,
   defaultValue: string,
 ): Promise<string> {
-  const answer = await p.text({
-    message,
-    placeholder: defaultValue,
-    defaultValue,
-  });
-  if (typeof answer !== "string" || p.isCancel(answer)) {
-    cancel();
-  }
+  const answer = unwrapAnswer(
+    await p.text({
+      message,
+      placeholder: defaultValue,
+      defaultValue,
+    }),
+  );
   const value = answer.trim();
   return value === "" ? defaultValue : value;
 }
 
 async function promptLanguage(): Promise<string> {
-  const answer = await p.select({
-    message:
-      "Which language should your assistant converse and write documents in?",
-    options: [
-      ...LANGUAGES.map((language) => ({ value: language, label: language })),
-      { value: "other", label: "Other…" },
-    ],
-    initialValue: "English",
-  });
-  if (typeof answer !== "string" || p.isCancel(answer)) {
-    cancel();
-  }
+  const answer = unwrapAnswer(
+    await p.select({
+      message:
+        "Which language should your assistant converse and write documents in?",
+      options: [
+        ...LANGUAGES.map((language) => ({ value: language, label: language })),
+        { value: "other", label: "Other…" },
+      ],
+      initialValue: "English",
+    }),
+  );
   return answer === "other" ? promptText("Which language?", "English") : answer;
 }
 
-interface CliArgs {
-  values: {
-    name?: string;
-    method?: string;
-    lang?: string;
-    dir?: string;
-    yes?: boolean;
-    help?: boolean;
-  };
-  positionals: string[];
+async function resolveMethod(
+  methodId: string | undefined,
+): Promise<MethodPack> {
+  const picked =
+    methodId ??
+    unwrapAnswer(
+      await p.select({
+        message: "Which organization method do you use?",
+        options: METHODS.map((m) => ({ value: m.id, label: m.label })),
+      }),
+    );
+  const method = getMethod(picked);
+  if (method === undefined) {
+    fail(
+      `Invalid method '${picked}'. Valid methods: ${METHODS.map((m) => m.id).join(", ")}.`,
+    );
+  }
+  return method;
 }
 
-function parseCliArgs(): CliArgs {
+function parseCliArgs() {
   try {
     return parseArgs({
       allowPositionals: true,
@@ -161,29 +174,7 @@ async function main(): Promise<void> {
       : await promptText("What should your assistant be called?", "Lia");
   }
 
-  let method: MethodPack | undefined;
-  if (values.method !== undefined) {
-    method = getMethod(values.method);
-    if (method === undefined) {
-      fail(
-        `Invalid method '${values.method}'. Valid methods: ${METHODS.map((m) => m.id).join(", ")}.`,
-      );
-    }
-  }
-  if (method === undefined) {
-    const picked = await p.select({
-      message: "Which organization method do you use?",
-      options: METHODS.map((m) => ({ value: m.id, label: m.label })),
-    });
-    if (typeof picked !== "string" || p.isCancel(picked)) {
-      cancel();
-    }
-    const pickedMethod = getMethod(picked);
-    if (pickedMethod === undefined) {
-      fail(`Invalid method '${picked}'.`);
-    }
-    method = pickedMethod;
-  }
+  const method = await resolveMethod(values.method);
 
   let language = values.lang;
   if (language === undefined) {

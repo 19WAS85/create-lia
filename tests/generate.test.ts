@@ -42,6 +42,15 @@ describe("generate (para)", () => {
   it("renders the PARA workspace tree", async () => {
     const files = await render("para");
     expect([...files.keys()].sort()).toEqual([
+      ".agents/skills/prompt/SKILL.md",
+      ".agents/skills/prompt/references/best-practices.md",
+      ".agents/skills/prompt/references/core-principles.md",
+      ".agents/skills/prompt/references/evaluations.md",
+      ".agents/skills/prompt/references/model-specific.md",
+      ".agents/skills/save/SKILL.md",
+      ".agents/skills/save/references/evaluations.md",
+      ".agents/skills/search/SKILL.md",
+      ".agents/skills/search/references/evaluations.md",
       "AGENTS.md",
       "README.md",
       "TASKS.md",
@@ -91,6 +100,15 @@ describe("generate (gtd)", () => {
   it("renders the GTD workspace tree without TASKS.md", async () => {
     const files = await render("gtd");
     expect([...files.keys()].sort()).toEqual([
+      ".agents/skills/prompt/SKILL.md",
+      ".agents/skills/prompt/references/best-practices.md",
+      ".agents/skills/prompt/references/core-principles.md",
+      ".agents/skills/prompt/references/evaluations.md",
+      ".agents/skills/prompt/references/model-specific.md",
+      ".agents/skills/save/SKILL.md",
+      ".agents/skills/save/references/evaluations.md",
+      ".agents/skills/search/SKILL.md",
+      ".agents/skills/search/references/evaluations.md",
       "AGENTS.md",
       "README.md",
       "inbox/.gitkeep",
@@ -125,6 +143,15 @@ describe("generate (zettelkasten)", () => {
   it("renders the Zettelkasten workspace tree", async () => {
     const files = await render("zettelkasten");
     expect([...files.keys()].sort()).toEqual([
+      ".agents/skills/prompt/SKILL.md",
+      ".agents/skills/prompt/references/best-practices.md",
+      ".agents/skills/prompt/references/core-principles.md",
+      ".agents/skills/prompt/references/evaluations.md",
+      ".agents/skills/prompt/references/model-specific.md",
+      ".agents/skills/save/SKILL.md",
+      ".agents/skills/save/references/evaluations.md",
+      ".agents/skills/search/SKILL.md",
+      ".agents/skills/search/references/evaluations.md",
       "AGENTS.md",
       "README.md",
       "TASKS.md",
@@ -151,5 +178,65 @@ describe("generate (zettelkasten)", () => {
   it("seeds the Map of Content", async () => {
     const files = await render("zettelkasten");
     expect(content(files, "notes/index.md")).toContain("# Map of Content");
+  });
+});
+
+describe("generated skills", () => {
+  it("ships the three skills under .agents/skills", async () => {
+    const files = await render("para");
+    expect(
+      [...files.keys()].filter((key) => key.startsWith(".agents/")).sort(),
+    ).toEqual([
+      ".agents/skills/prompt/SKILL.md",
+      ".agents/skills/prompt/references/best-practices.md",
+      ".agents/skills/prompt/references/core-principles.md",
+      ".agents/skills/prompt/references/evaluations.md",
+      ".agents/skills/prompt/references/model-specific.md",
+      ".agents/skills/save/SKILL.md",
+      ".agents/skills/save/references/evaluations.md",
+      ".agents/skills/search/SKILL.md",
+      ".agents/skills/search/references/evaluations.md",
+    ]);
+  });
+
+  it("injects the assistant name into skill headings", async () => {
+    const files = await render("para", { name: "Ada" });
+    expect(content(files, ".agents/skills/save/SKILL.md")).toContain(
+      "# Ada: Save",
+    );
+    expect(content(files, ".agents/skills/prompt/SKILL.md")).toContain(
+      "# Ada: Prompt",
+    );
+    expect(content(files, ".agents/skills/search/SKILL.md")).toContain(
+      "# Ada: Search",
+    );
+  });
+
+  it("keeps skill bodies free of method names", async () => {
+    for (const id of ["para", "gtd", "zettelkasten"]) {
+      const files = await render(id);
+      for (const [path, body] of files) {
+        if (!path.startsWith(".agents/skills/")) {
+          continue;
+        }
+        expect(body, `${id}:${path}`).not.toMatch(
+          /\b(PARA|GTD|Zettelkasten)\b/i,
+        );
+      }
+    }
+  });
+
+  it("leaves no slots, personal tokens, or git assumptions in output", async () => {
+    for (const id of ["para", "gtd", "zettelkasten"]) {
+      const files = await render(id);
+      for (const [path, body] of files) {
+        const where = `${id}:${path}`;
+        expect(body, where).not.toMatch(/\{\{[^}]+\}\}/);
+        expect(body, where).not.toMatch(
+          /Wagner|wagner-context|\bLIA\b|lia:|~\/lia/,
+        );
+        expect(body, where).not.toMatch(/\bgit\b/i);
+      }
+    }
   });
 });

@@ -51,6 +51,12 @@ export async function renderWorkspace(
     "utf8",
   );
   files.set("README.md", `${interpolate(readme, values)}\n\n${index}`);
+  await collectTemplates(
+    join(options.templatesDir, "skills"),
+    ".agents/skills",
+    files,
+    values,
+  );
   return files;
 }
 

@@ -149,6 +149,15 @@ Route every saved change to its canonical location:
 
 exports[`generate (gtd) > renders the GTD workspace tree without TASKS.md > gtd tree 1`] = `
 [
+  ".agents/skills/prompt/SKILL.md",
+  ".agents/skills/prompt/references/best-practices.md",
+  ".agents/skills/prompt/references/core-principles.md",
+  ".agents/skills/prompt/references/evaluations.md",
+  ".agents/skills/prompt/references/model-specific.md",
+  ".agents/skills/save/SKILL.md",
+  ".agents/skills/save/references/evaluations.md",
+  ".agents/skills/search/SKILL.md",
+  ".agents/skills/search/references/evaluations.md",
   "AGENTS.md",
   "README.md",
   "inbox/.gitkeep",
@@ -319,6 +328,15 @@ Route every saved change to its canonical location:
 
 exports[`generate (para) > renders the PARA workspace tree > para tree 1`] = `
 [
+  ".agents/skills/prompt/SKILL.md",
+  ".agents/skills/prompt/references/best-practices.md",
+  ".agents/skills/prompt/references/core-principles.md",
+  ".agents/skills/prompt/references/evaluations.md",
+  ".agents/skills/prompt/references/model-specific.md",
+  ".agents/skills/save/SKILL.md",
+  ".agents/skills/save/references/evaluations.md",
+  ".agents/skills/search/SKILL.md",
+  ".agents/skills/search/references/evaluations.md",
   "AGENTS.md",
   "README.md",
   "TASKS.md",
@@ -472,6 +490,15 @@ Route every saved change to its canonical location:
 
 exports[`generate (zettelkasten) > renders the Zettelkasten workspace tree > zettelkasten tree 1`] = `
 [
+  ".agents/skills/prompt/SKILL.md",
+  ".agents/skills/prompt/references/best-practices.md",
+  ".agents/skills/prompt/references/core-principles.md",
+  ".agents/skills/prompt/references/evaluations.md",
+  ".agents/skills/prompt/references/model-specific.md",
+  ".agents/skills/save/SKILL.md",
+  ".agents/skills/save/references/evaluations.md",
+  ".agents/skills/search/SKILL.md",
+  ".agents/skills/search/references/evaluations.md",
   "AGENTS.md",
   "README.md",
   "TASKS.md",

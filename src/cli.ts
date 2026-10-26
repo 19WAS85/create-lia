@@ -26,7 +26,14 @@ Examples:
   create-lia
   create-lia my-workspace --name Ada --method gtd --lang pt-BR --yes`;
 
+// Language choices offered in the selection prompt.
 const LANGUAGES = ["English", "Português", "Español", "Deutsch", "Français"];
+// Assistant name offered in prompts and used when --name is omitted.
+const DEFAULT_ASSISTANT_NAME = "Lia";
+// Language preselected in prompts and used when --lang is omitted.
+const DEFAULT_LANGUAGE = "English";
+// Directory name used when the assistant name yields an empty kebab-case slug.
+const FALLBACK_DIR_NAME = "workspace";
 
 function fail(message: string): never {
   console.error(message);
@@ -51,7 +58,7 @@ function toKebabCase(value: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
-  return kebab === "" ? "workspace" : kebab;
+  return kebab === "" ? FALLBACK_DIR_NAME : kebab;
 }
 
 async function isUsableTarget(target: string): Promise<boolean> {
@@ -90,10 +97,12 @@ async function promptLanguage(): Promise<string> {
         ...LANGUAGES.map((language) => ({ value: language, label: language })),
         { value: "other", label: "Other…" },
       ],
-      initialValue: "English",
+      initialValue: DEFAULT_LANGUAGE,
     }),
   );
-  return answer === "other" ? promptText("Which language?", "English") : answer;
+  return answer === "other"
+    ? promptText("Which language?", DEFAULT_LANGUAGE)
+    : answer;
 }
 
 async function resolveMethod(
@@ -104,16 +113,54 @@ async function resolveMethod(
     unwrapAnswer(
       await p.select({
         message: "Which organization method do you use?",
-        options: METHODS.map((m) => ({ value: m.id, label: m.label })),
+        options: METHODS.map((pack) => ({ value: pack.id, label: pack.label })),
       }),
     );
   const method = getMethod(picked);
   if (method === undefined) {
     fail(
-      `Invalid method '${picked}'. Valid methods: ${METHODS.map((m) => m.id).join(", ")}.`,
+      `Invalid method '${picked}'. Valid methods: ${METHODS.map((pack) => pack.id).join(", ")}.`,
     );
   }
   return method;
+}
+
+async function resolveName(
+  name: string | undefined,
+  nonInteractive: boolean,
+): Promise<string> {
+  return (
+    name ??
+    (nonInteractive
+      ? DEFAULT_ASSISTANT_NAME
+      : await promptText(
+          "What should your assistant be called?",
+          DEFAULT_ASSISTANT_NAME,
+        ))
+  );
+}
+
+async function resolveLanguage(
+  language: string | undefined,
+  nonInteractive: boolean,
+): Promise<string> {
+  return (
+    language ?? (nonInteractive ? DEFAULT_LANGUAGE : await promptLanguage())
+  );
+}
+
+async function resolveTargetDir(
+  targetDir: string | undefined,
+  name: string,
+  nonInteractive: boolean,
+): Promise<string> {
+  const fallback = `./${toKebabCase(name)}`;
+  const picked =
+    targetDir ??
+    (nonInteractive
+      ? fallback
+      : await promptText("Where should the workspace be created?", fallback));
+  return resolve(picked);
 }
 
 function parseCliArgs() {
@@ -167,28 +214,17 @@ async function main(): Promise<void> {
     );
   }
 
-  let name = values.name;
-  if (name === undefined) {
-    name = nonInteractive
-      ? "Lia"
-      : await promptText("What should your assistant be called?", "Lia");
-  }
+  const name = await resolveName(values.name, nonInteractive);
 
   const method = await resolveMethod(values.method);
 
-  let language = values.lang;
-  if (language === undefined) {
-    language = nonInteractive ? "English" : await promptLanguage();
-  }
+  const language = await resolveLanguage(values.lang, nonInteractive);
 
-  let targetDir = positionals[0] ?? values.dir;
-  if (targetDir === undefined) {
-    const fallback = `./${toKebabCase(name)}`;
-    targetDir = nonInteractive
-      ? fallback
-      : await promptText("Where should the workspace be created?", fallback);
-  }
-  targetDir = resolve(targetDir);
+  const targetDir = await resolveTargetDir(
+    positionals[0] ?? values.dir,
+    name,
+    nonInteractive,
+  );
 
   if (!(await isUsableTarget(targetDir))) {
     fail(

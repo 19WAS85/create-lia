@@ -1,0 +1,31 @@
+{
+  "name": "create-lia",
+  "version": "0.1.0",
+  "description": "Scaffold a personal-assistant knowledge-base workspace: AGENTS.md operating manual, organization-method directories, and three generic agent skills.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "create-lia": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && vitest run",
+    "lint": "biome check ."
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.8.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.2",
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}

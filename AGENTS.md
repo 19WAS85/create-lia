@@ -24,7 +24,6 @@ Data flow: templates on disk → `renderWorkspace` → `FileTree` → `writeWork
 | `templates/core/` | Method-agnostic templates: `AGENTS-core.md`, `README.md` |
 | `templates/methods/<id>/` | Per method: `chapter.md`, `save-routing.md`, `tasks.md` (not for gtd), `skeleton/` directory tree |
 | `templates/skills/{save,prompt,search}/` | `SKILL.md` + `references/` files copied to `.agents/skills/` in generated workspaces |
-| `docs/` | `docs/spec.md` — design spec (product shape, CLI UX, testing, packaging) |
 
 ## Development Commands
 
@@ -60,7 +59,7 @@ node dist/cli.js --name Ada --method gtd --lang pt-BR --yes   # run the CLI loca
 - `src/methods.ts` — `METHODS`, `getMethod`, and the template-filename constants (`SKELETON_DIR`, `CHAPTER_FILE`, `ROUTING_FILE`).
 - `templates/` — consumed at runtime by `renderWorkspace`; editing it changes generated output and invalidates snapshots.
 - `tests/__snapshots__/generate.test.ts.snap` — full rendered trees and `AGENTS.md` per method.
-- `biome.json`, `tsconfig.json`, `docs/spec.md`, `README.md`, `LICENSE` (MIT).
+- `biome.json`, `tsconfig.json`, `README.md`, `LICENSE` (MIT).
 
 ### Frozen contracts & traps
 

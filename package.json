@@ -2,7 +2,27 @@
   "name": "create-lia",
   "version": "0.2.0",
   "description": "Scaffold a personal-assistant knowledge-base workspace: AGENTS.md operating manual, organization-method directories, and three generic agent skills.",
+  "keywords": [
+    "cli",
+    "scaffold",
+    "workspace",
+    "knowledge-base",
+    "personal-assistant",
+    "agents",
+    "gtd",
+    "para",
+    "zettelkasten"
+  ],
   "license": "MIT",
+  "author": "Wagner Andrade <19WAS85@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/19WAS85/create-lia.git"
+  },
+  "homepage": "https://github.com/19WAS85/create-lia#readme",
+  "bugs": {
+    "url": "https://github.com/19WAS85/create-lia/issues"
+  },
   "type": "module",
   "bin": {
     "create-lia": "dist/cli.js"

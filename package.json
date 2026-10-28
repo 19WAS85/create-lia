@@ -1,6 +1,6 @@
 {
   "name": "create-lia",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Scaffold a personal-assistant knowledge-base workspace: AGENTS.md operating manual, organization-method directories, and three generic agent skills.",
   "keywords": [
     "cli",

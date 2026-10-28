@@ -1,6 +1,8 @@
 # create-lia
 
-Lightweight and simple by design: made to work with your own agentic harness, applying YAGNI, KISS, and POLA in both design and execution. `create-lia` scaffolds a personal-assistant knowledge workspace for an assistant you name (Lia by default): a complete `AGENTS.md` operating manual, the directories of a proven organization method, task tracking, and three generic agent skills (`save`, `prompt`, `search`) — all in plain Markdown files you own.
+Lightweight and simple personal-assistant knowledge workspace made to work with your own agentic harness, applying YAGNI, KISS, and POLA in both design and execution.
+
+`create-lia` scaffolds an assistant you name (Lia by default): a complete `AGENTS.md` operating manual, the directories of a proven organization method, task tracking, and three generic agent skills (`save`, `prompt`, `search`) — all in plain Markdown files you own.
 
 ## What Lia does for you
 
@@ -8,7 +10,7 @@ Lightweight and simple by design: made to work with your own agentic harness, ap
 
 | Method | Directories | Task tracking |
 | --- | --- | --- |
-| `para` | `projects/`, `areas/`, `resources/`, `archives/`, `knowledge/` | `TASKS.md` (This week / Upcoming / Completed) |
+| `para` | `projects/`, `areas/`, `resources/`, `archives/` | `TASKS.md` (This week / Upcoming / Completed) |
 | `gtd` | `inbox/`, `projects/`, `reference/`, `next-actions.md`, `waiting-for.md`, `someday-maybe.md` | the GTD lists themselves |
 | `zettelkasten` | `inbox/`, `notes/` (with a Map of Content), `sources/` | `TASKS.md` (Open / Done) |
 

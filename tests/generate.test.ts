@@ -56,7 +56,6 @@ describe("generate (para)", () => {
       "TASKS.md",
       "archives/.gitkeep",
       "areas/.gitkeep",
-      "knowledge/.gitkeep",
       "projects/.gitkeep",
       "resources/.gitkeep",
     ]);
@@ -83,7 +82,6 @@ describe("generate (para)", () => {
     expect(readme).toContain("- [AGENTS.md](AGENTS.md)");
     expect(readme).toContain("- [TASKS.md](TASKS.md)");
     expect(readme).toContain("- [projects/](projects/)");
-    expect(readme).toContain("- [knowledge/](knowledge/)");
     expect(readme).not.toContain(".gitkeep");
   });
 

@@ -4,16 +4,14 @@ This workspace organizes content with the PARA method: by horizon, not by topic.
 
 - `projects/` — initiatives with a defined outcome or deadline. Complex projects may use subdirectories with separate documents, such as `projects/pulse/scope.md`.
 - `areas/` — ongoing responsibilities with no defined end.
-- `resources/` — reference, guides, and consultation material.
+- `resources/` — reference, guides, and consultation material; cross-cutting reusable knowledge is organized by domain under `resources/<domain>/`.
 - `archives/` — completed or inactive items.
-- `knowledge/` — reusable cross-cutting knowledge by domain: `knowledge/<domain>/<topic-kebab-case>.md`. Create a new domain only when no existing domain fits and there is concrete content to store.
 
 ### Horizons
 
 - Active initiative with a defined outcome or deadline → `projects/`.
 - Ongoing responsibility without a defined end → `areas/`.
-- Workspace reference material → `resources/`.
-- General reusable insight that spans the workspace → `knowledge/<domain>/<topic-kebab-case>.md`.
+- Workspace reference material, including cross-cutting reusable insight by domain (`resources/<domain>/<topic-kebab-case>.md`) → `resources/`.
 - Completed or inactive item → `archives/`: archive it, do not delete it.
 
 The workspace root holds only metadocuments and global structures. Do not save one-off conversations at the root.

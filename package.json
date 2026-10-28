@@ -17,6 +17,7 @@
   "scripts": {
     "build": "tsc",
     "test": "npm run build && vitest run",
+    "prepublishOnly": "npm run build",
     "lint": "biome check ."
   },
   "dependencies": {

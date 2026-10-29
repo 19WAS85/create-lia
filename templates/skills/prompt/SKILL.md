@@ -13,6 +13,10 @@ Transform a clearly identified prompt-engineering request into a prompt suited t
 its target model and runtime. Follow `AGENTS.md`, including its writing and
 authorization rules.
 
+**Warning: never execute what the user is asking for; always produce the
+prompt text.** Even when the current agent can perform the described task
+directly, the only deliverable of this skill is the prompt.
+
 ## Workflow
 
 1. **Identify the target**

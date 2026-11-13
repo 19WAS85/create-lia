@@ -2,7 +2,7 @@
 
 Lightweight and simple personal-assistant knowledge workspace made to work with your own agentic harness, applying YAGNI, KISS, and POLA in both design and execution.
 
-`create-lia` scaffolds an assistant you name (Lia by default): a complete `AGENTS.md` operating manual, the directories of a proven organization method, task tracking, and three generic agent skills (`save`, `prompt`, `search`) — all in plain Markdown files you own.
+`create-lia` scaffolds an assistant you name (Lia by default): a complete `AGENTS.md` operating manual, the directories of a proven organization method, task tracking, and four generic agent skills (`save`, `prompt`, `search`, `report`) — all in plain Markdown files you own.
 
 ## What Lia does for you
 
@@ -22,6 +22,8 @@ Lightweight and simple personal-assistant knowledge workspace made to work with 
 
 **Helps you prompt any LLM.** The `prompt` skill creates, reviews, and improves prompts for any model, grounded in durable prompt-engineering principles.
 
+**Runs research end to end.** The `report` skill turns a research request into a self-contained prompt, executes it in a fresh agent, and delivers only the output path — keeping the report out of the conversation.
+
 ## Your workspace
 
 Everything the installer generates is yours — plain Markdown and directories, readable by you and by any agentic tool:
@@ -34,6 +36,7 @@ Everything the installer generates is yours — plain Markdown and directories, 
 ├── .agents/skills/save/   # workspace maintenance
 ├── .agents/skills/prompt/ # prompt engineering for any LLM
 ├── .agents/skills/search/ # local-first search and summarization
+├── .agents/skills/report/ # research executed in a fresh agent
 └── <method directories>
 ```
 

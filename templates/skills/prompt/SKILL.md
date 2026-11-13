@@ -1,10 +1,9 @@
 ---
 name: prompt
 description: >
-  Creates, reviews, or improves prompts for any LLM. Use when the user explicitly
-  asks for a prompt, prompt engineering, a system prompt, improvement of an
-  existing prompt, or guidance on instructing a model. Do not use merely because
-  the user describes a task that the current agent can perform directly.
+  Use when the user explicitly asks to create, review, or improve a prompt,
+  system prompt, prompt-engineering instruction, or guidance for instructing
+  an LLM; not for directly executing the described task.
 ---
 
 # {{name}}: Prompt

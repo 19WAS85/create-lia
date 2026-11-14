@@ -5,3 +5,4 @@
 3. **Prompt with untrusted documents:** delimit variable content and prevent embedded instructions from overriding the prompt.
 4. **Simple one-shot task:** return a concise direct prompt without unnecessary role, XML, examples, or chaining.
 5. **Agent system prompt:** define tools, action boundaries, failure handling, and verifiable completion criteria without requesting hidden chain of thought.
+6. **Domain-specific prompt (e.g., layout or design):** research community best practices, established patterns, and anti-patterns with the `search` skill before drafting; encode discovered anti-patterns as negative constraints so the result avoids generic AI slop.

@@ -53,6 +53,9 @@ Behavior matches what was asked and documented, with no hidden side effects.
 2. **Plan**: break the work into logical units; identify risks and dependencies.
 3. **Implement**: execute only the authorized actions, one unit at a time, verifying before moving on.
 
+
+- **Research**: use the `search` skill for any search or research (workspace documents or web content). Search this workspace before answering questions about past work or history. Use `report` only when the output is an analytical deliverable (a structured report, comparative analysis, or multi-source synthesis) — not for straightforward factual lookups or conversational answers.
+
 Surface ambiguity instead of guessing: when something is ambiguous, present the options instead of deciding unilaterally. Record content when requested, or when maintenance follows directly from an authorized change; then run the maintenance described below.
 
 ### Persistence Criteria

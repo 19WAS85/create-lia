@@ -1,16 +1,23 @@
 ---
 name: report
 description: >
-  Use when the user asks for a report, advanced search, research, or a similar
-  analytical deliverable; not for operational edits, pipelines, fixes, or prompt
-  text without execution.
+  Use for analytical deliverables: structured reports, comparative analyses, or
+  multi-source syntheses. Not for straightforward factual or conversational
+  research (use `search` instead), operational edits, pipelines, fixes, or
+  prompt text without execution.
 ---
 
 # {{name}}: Report
 
-Turn a report, advanced-search, or research request into a well-crafted prompt,
-execute it in a fresh agent, and deliver the result. Follow `AGENTS.md`,
-including its writing rules and its security and privacy rules.
+Turn a research request that requires a structured, multi-source analytical
+deliverable into a well-crafted prompt, execute it in a fresh agent, and deliver
+the result. Follow `AGENTS.md`, including its writing rules and its security and
+privacy rules.
+
+**Scope gate**: if the request is a factual lookup, a conversational answer, or
+a simple web/workspace search, use the `search` skill instead. `report` is for
+deliverables that justify the overhead of a fresh agent: structured reports,
+comparative analyses, or multi-source syntheses.
 
 **Warning: never execute the task in the current agent.** Build the prompt via
 the `prompt` sub-skill, display it, then execute it in a fresh agent (step 3)

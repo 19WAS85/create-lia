@@ -61,6 +61,16 @@ Behavior matches what was asked and documented, with no hidden side effects.
 
 Surface ambiguity instead of guessing: when something is ambiguous, present the options instead of deciding unilaterally. Record content when requested, or when maintenance follows directly from an authorized change; then run the maintenance described below.
 
+### Skill Map
+
+Handoffs between skills, kept in sync with the skill files:
+
+- \`search\` — research and factual lookups over the workspace and the web; runs \`save\` maintenance after an authorized substantive write.
+- \`report\` — analytical deliverables; requires \`prompt\` to build its execution prompt, then hands broader maintenance to \`save\`.
+- \`prompt\` — creates, reviews, or improves prompts; researches the domain with \`search\`.
+- \`spec\` — shapes raw ideas into a documented one-pager; runs \`save\` maintenance after writing the file.
+- \`save\` — the single entry point for maintenance after substantive work (see Organization and Maintenance).
+
 ### Persistence Criteria
 
 - **Substantive content**: produces a decision, commitment, state change, reusable learning, or context needed for future work.
@@ -163,6 +173,7 @@ exports[`generate (gtd) > renders the GTD workspace tree without TASKS.md > gtd 
   ".agents/skills/save/references/evaluations.md",
   ".agents/skills/search/SKILL.md",
   ".agents/skills/search/references/evaluations.md",
+  ".agents/skills/spec/SKILL.md",
   "AGENTS.md",
   "README.md",
   "inbox/.gitkeep",
@@ -234,6 +245,16 @@ Behavior matches what was asked and documented, with no hidden side effects.
 - **Research**: use the \`search\` skill for any search or research (workspace documents or web content). Search this workspace before answering questions about past work or history. Use \`report\` only when the output is an analytical deliverable (a structured report, comparative analysis, or multi-source synthesis) — not for straightforward factual lookups or conversational answers.
 
 Surface ambiguity instead of guessing: when something is ambiguous, present the options instead of deciding unilaterally. Record content when requested, or when maintenance follows directly from an authorized change; then run the maintenance described below.
+
+### Skill Map
+
+Handoffs between skills, kept in sync with the skill files:
+
+- \`search\` — research and factual lookups over the workspace and the web; runs \`save\` maintenance after an authorized substantive write.
+- \`report\` — analytical deliverables; requires \`prompt\` to build its execution prompt, then hands broader maintenance to \`save\`.
+- \`prompt\` — creates, reviews, or improves prompts; researches the domain with \`search\`.
+- \`spec\` — shapes raw ideas into a documented one-pager; runs \`save\` maintenance after writing the file.
+- \`save\` — the single entry point for maintenance after substantive work (see Organization and Maintenance).
 
 ### Persistence Criteria
 
@@ -344,6 +365,7 @@ exports[`generate (para) > renders the PARA workspace tree > para tree 1`] = `
   ".agents/skills/save/references/evaluations.md",
   ".agents/skills/search/SKILL.md",
   ".agents/skills/search/references/evaluations.md",
+  ".agents/skills/spec/SKILL.md",
   "AGENTS.md",
   "README.md",
   "TASKS.md",
@@ -414,6 +436,16 @@ Behavior matches what was asked and documented, with no hidden side effects.
 - **Research**: use the \`search\` skill for any search or research (workspace documents or web content). Search this workspace before answering questions about past work or history. Use \`report\` only when the output is an analytical deliverable (a structured report, comparative analysis, or multi-source synthesis) — not for straightforward factual lookups or conversational answers.
 
 Surface ambiguity instead of guessing: when something is ambiguous, present the options instead of deciding unilaterally. Record content when requested, or when maintenance follows directly from an authorized change; then run the maintenance described below.
+
+### Skill Map
+
+Handoffs between skills, kept in sync with the skill files:
+
+- \`search\` — research and factual lookups over the workspace and the web; runs \`save\` maintenance after an authorized substantive write.
+- \`report\` — analytical deliverables; requires \`prompt\` to build its execution prompt, then hands broader maintenance to \`save\`.
+- \`prompt\` — creates, reviews, or improves prompts; researches the domain with \`search\`.
+- \`spec\` — shapes raw ideas into a documented one-pager; runs \`save\` maintenance after writing the file.
+- \`save\` — the single entry point for maintenance after substantive work (see Organization and Maintenance).
 
 ### Persistence Criteria
 
@@ -510,6 +542,7 @@ exports[`generate (zettelkasten) > renders the Zettelkasten workspace tree > zet
   ".agents/skills/save/references/evaluations.md",
   ".agents/skills/search/SKILL.md",
   ".agents/skills/search/references/evaluations.md",
+  ".agents/skills/spec/SKILL.md",
   "AGENTS.md",
   "README.md",
   "TASKS.md",

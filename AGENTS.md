@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-`create-lia` is a Node.js CLI that scaffolds a personal-assistant knowledge-base workspace: a generated `AGENTS.md` operating manual, the directories of an organization method (PARA, GTD, or Zettelkasten), task tracking, and three generic agent skills (`save`, `prompt`, `search`). The package exposes a single binary (`bin: { "create-lia": "dist/cli.js" }`) — it is CLI-only, with no `main`/`exports` and no emitted type declarations. The `templates/` tree is the generator's data and ships with the package (`files: ["dist", "templates"]`).
+`create-lia` is a Node.js CLI that scaffolds a personal-assistant knowledge-base workspace: a generated `AGENTS.md` operating manual, the directories of an organization method (PARA, GTD, or Zettelkasten), task tracking, and five generic agent skills (`save`, `prompt`, `search`, `report`, `spec`). The package exposes a single binary (`bin: { "create-lia": "dist/cli.js" }`) — it is CLI-only, with no `main`/`exports` and no emitted type declarations. The `templates/` tree is the generator's data and ships with the package (`files: ["dist", "templates"]`).
 
 ## Architecture & Data Flow
 
@@ -23,7 +23,7 @@ Data flow: templates on disk → `renderWorkspace` → `FileTree` → `writeWork
 | `tests/` | Vitest suites mirroring `src/` one-to-one (`<module>.test.ts` ↔ `src/<module>.ts`) |
 | `templates/core/` | Method-agnostic templates: `AGENTS-core.md`, `README.md` |
 | `templates/methods/<id>/` | Per method: `chapter.md`, `save-routing.md`, `tasks.md` (not for gtd), `skeleton/` directory tree |
-| `templates/skills/{save,prompt,search}/` | `SKILL.md` + `references/` files copied to `.agents/skills/` in generated workspaces |
+| `templates/skills/{save,prompt,report,search,spec}/` | `SKILL.md` + `references/` files copied to `.agents/skills/` in generated workspaces |
 
 ## Development Commands
 

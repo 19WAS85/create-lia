@@ -53,6 +53,7 @@ describe("generate (para)", () => {
       ".agents/skills/save/references/evaluations.md",
       ".agents/skills/search/SKILL.md",
       ".agents/skills/search/references/evaluations.md",
+      ".agents/skills/spec/SKILL.md",
       "AGENTS.md",
       "README.md",
       "TASKS.md",
@@ -111,6 +112,7 @@ describe("generate (gtd)", () => {
       ".agents/skills/save/references/evaluations.md",
       ".agents/skills/search/SKILL.md",
       ".agents/skills/search/references/evaluations.md",
+      ".agents/skills/spec/SKILL.md",
       "AGENTS.md",
       "README.md",
       "inbox/.gitkeep",
@@ -156,6 +158,7 @@ describe("generate (zettelkasten)", () => {
       ".agents/skills/save/references/evaluations.md",
       ".agents/skills/search/SKILL.md",
       ".agents/skills/search/references/evaluations.md",
+      ".agents/skills/spec/SKILL.md",
       "AGENTS.md",
       "README.md",
       "TASKS.md",
@@ -186,7 +189,7 @@ describe("generate (zettelkasten)", () => {
 });
 
 describe("generated skills", () => {
-  it("ships the four skills under .agents/skills", async () => {
+  it("ships the five skills under .agents/skills", async () => {
     const files = await render("para");
     expect(
       [...files.keys()].filter((key) => key.startsWith(".agents/")).sort(),
@@ -202,6 +205,7 @@ describe("generated skills", () => {
       ".agents/skills/save/references/evaluations.md",
       ".agents/skills/search/SKILL.md",
       ".agents/skills/search/references/evaluations.md",
+      ".agents/skills/spec/SKILL.md",
     ]);
   });
 
@@ -218,6 +222,9 @@ describe("generated skills", () => {
     );
     expect(content(files, ".agents/skills/report/SKILL.md")).toContain(
       "# Ada: Report",
+    );
+    expect(content(files, ".agents/skills/spec/SKILL.md")).toContain(
+      "# Ada: Spec",
     );
   });
 

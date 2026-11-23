@@ -69,8 +69,9 @@ directly, the only deliverable of this skill is the prompt.
    - Present the finished prompt in a labeled code block.
    - Add at most five concise bullets explaining consequential design choices.
    - Offer a variant only when it represents a meaningful trade-off.
-   - Do not save unless the user explicitly asks. If asked, follow the
-     canonical-document rules and the authorization rules in `AGENTS.md`.
+   - Do not save unless the user explicitly asks. If asked, invoke the `save`
+     skill: it applies the canonical-document and authorization rules from
+     `AGENTS.md`.
 
 ## Design Levels
 

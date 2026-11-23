@@ -58,6 +58,16 @@ Behavior matches what was asked and documented, with no hidden side effects.
 
 Surface ambiguity instead of guessing: when something is ambiguous, present the options instead of deciding unilaterally. Record content when requested, or when maintenance follows directly from an authorized change; then run the maintenance described below.
 
+### Skill Map
+
+Handoffs between skills, kept in sync with the skill files:
+
+- `search` — research and factual lookups over the workspace and the web; runs `save` maintenance after an authorized substantive write.
+- `report` — analytical deliverables; requires `prompt` to build its execution prompt, then hands broader maintenance to `save`.
+- `prompt` — creates, reviews, or improves prompts; researches the domain with `search`.
+- `spec` — shapes raw ideas into a documented one-pager; runs `save` maintenance after writing the file.
+- `save` — the single entry point for maintenance after substantive work (see Organization and Maintenance).
+
 ### Persistence Criteria
 
 - **Substantive content**: produces a decision, commitment, state change, reusable learning, or context needed for future work.

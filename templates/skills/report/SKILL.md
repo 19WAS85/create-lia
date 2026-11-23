@@ -53,7 +53,7 @@ variants and no save.
 3. **Execute in a fresh agent**
    - Immediately after displaying the prompt, spawn a fresh agent with the
      `task` tool. Never ask the user for permission or confirmation.
-   - Assign a stable output path before spawning: `local://report-<slug>.md`,
+   - Assign a stable staging path before spawning: `local://report-<slug>.md`,
      where `<slug>` is a short kebab-case label derived from the request topic.
      Pass that path to the agent in the prompt so it writes its deliverable
      there directly.
@@ -74,16 +74,20 @@ variants and no save.
      its error output on screen; never retry silently.
 
 4. **Deliver the result**
-   - The deliverable lives at the `local://` path the agent wrote. Confirm the
-     file exists; if it does not, treat it as a failure and surface the agent's
-     error output verbatim.
-   - Present **only** the output path to the user — never read or echo the file
-     contents. Example reply:
-     > Report at `local://report-<slug>.md`
-   - This keeps the deliverable out of the context window. The user reads it
-     directly, or saves it with the `save` skill, which copies the file to its
-     canonical destination without routing the content through the LLM.
-   - Never save or persist the prompt. The user saves the report with `save`.
+   - The deliverable is staged at the `local://` path the agent wrote. Confirm
+     the file exists; if it does not, treat it as a failure and surface the
+     agent's error output verbatim.
+   - Determine the canonical destination from the save-routing table in
+     `AGENTS.md`. If the destination is genuinely ambiguous, ask the user to
+     choose it before moving the file.
+   - Move the file to that destination with a file operation (`mv`), keeping a
+     kebab-case file name. Never read or echo the file contents: the deliverable
+     stays out of the context window.
+   - Present **only** the final on-disk path to the user. Example reply:
+     > Report at `<destination>/<topic-kebab-case>.md`
+   - Never save or persist the prompt. After the move, run applicable `save`
+     maintenance for broader workspace upkeep (reusable knowledge, tasks,
+     `README.md`).
 
 ## Quality Checks
 
@@ -95,7 +99,9 @@ Before delivering, verify:
   prompt;
 - the finished prompt was displayed before execution;
 - execution ran in a fresh agent without asking for approval;
-- only the output path (not the content) is presented on screen, and nothing was saved;
+- the report was moved to its canonical destination per the `AGENTS.md`
+  save-routing table, and only the final path (not the content) is presented on
+  screen;
 - failures are surfaced verbatim, not retried silently.
 
 See [evaluation scenarios](references/evaluations.md) when testing or revising

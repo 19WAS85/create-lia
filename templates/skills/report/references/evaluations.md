@@ -18,4 +18,4 @@
    only; the current agent never executes it, even when it could.
 6. **Failure surfacing:** if the execution agent fails or returns no deliverable,
    the failure and its error output appear on screen verbatim; no silent retry.
-7. **Path delivery and no context-window copy:** the execution agent writes its deliverable to the `local://` path assigned before spawning; the current agent confirms the file exists and presents only that path to the user — it never reads, echoes, or routes the file contents through its own context window. Nothing is saved automatically; the user saves with `save`.
+7. **Canonical-path delivery and no context-window copy:** the execution agent writes its deliverable to the `local://` staging path assigned before spawning; the current agent confirms the file exists, moves it to the canonical destination from the `AGENTS.md` save-routing table (asking the user only when the destination is genuinely ambiguous), and presents only the final on-disk path — it never reads, echoes, or routes the file contents through its own context window. The prompt itself is never saved.
